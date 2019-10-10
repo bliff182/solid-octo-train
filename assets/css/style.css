@@ -1,0 +1,10 @@
+body {
+    font-size: 18px;
+    line-height: 150%;
+}
+
+div {
+    border: 1px solid black;
+    margin: 30px;
+    padding-bottom: 60px;
+}
