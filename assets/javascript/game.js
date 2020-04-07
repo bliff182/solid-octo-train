@@ -58,3 +58,41 @@
 //     })
 
 // });
+
+// Execute this code when the DOM has fully loaded
+$(document).ready(function () {
+  // VARIABLE DECLARATION
+  // ===================================================================
+
+  // Hold all characters in an object
+  const characters = {
+    "Obi-Wan Kenobi": {
+      name: "Obi-Wan Kenobi",
+      health: 120,
+      attack: 8,
+      imageUrl: "assets/images/obi-wan.jpg",
+      enemyAttackBack: 15,
+    },
+    "Luke Skywalker": {
+      name: "Luke Skywalker",
+      health: 100,
+      attack: 14,
+      imageUrl: "assets/images/luke-skywalker.jpg",
+      enemyAttackBack: 5,
+    },
+    "Emperor Palpatine": {
+      name: "Emperor Palpatine",
+      health: 150,
+      attack: 8,
+      imageUrl: "assets/images/darth-sidious.png",
+      enemyAttackBack: 20,
+    },
+    "Darth Maul": {
+      name: "Darth Maul",
+      health: 180,
+      attack: 7,
+      imageUrl: "assets/images/darth-maul.jpg",
+      enemyAttackBack: 25,
+    },
+  };
+});

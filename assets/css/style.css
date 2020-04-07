@@ -50,3 +50,11 @@ header {
 #enemy-selection {
     clear: both;
 } */
+
+body {
+    font-family: "Share Tech Mono", Arial, Helvetica, sans-serif;
+    background-image: url("../images/star_wars_xwing.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
