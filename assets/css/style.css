@@ -1,10 +1,52 @@
-body {
-    font-size: 18px;
+/* body {
+    background-image: url("../images/background.jpg");
+    font-family: 'Star Jedi', arial;
+    font-size: 24px;
     line-height: 150%;
+    color: yellow;
 }
 
-div {
-    border: 1px solid black;
-    margin: 30px;
-    padding-bottom: 60px;
+header {
+    font-size: 48px;
+    /* text-shadow: 4px 4px 4px #aaa; */
+
+/* margin-bottom: 40px;
+} */
+
+/* div { */
+
+/* border: 1px solid white; */
+
+/* overflow: auto; */
+
+/* margin: 30px; */
+
+/* padding-bottom: 60px; */
+
+/* } */
+
+/* img {
+    width: 200px;
 }
+
+#character-selection {
+    overflow: auto;
+    margin-bottom: 30px;
+}
+
+.character-div {
+    padding: 0;
+    margin: 0 20px;
+    float: left;
+    position: relative;
+}
+.image-text { */
+
+/* position: absolute; */
+
+/* background: black;
+}
+
+#enemy-selection {
+    clear: both;
+} */

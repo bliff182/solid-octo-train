@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Share+Tech+Mono"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Star Wars with jQuery!</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <body>
+    <div class="main-section-title">Star Wars RPG!</div>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <div id="main-game-section">
+      <div id="characters-section">
+        <div class="section-title">Select Your Character</div>
+      </div>
 
-    <title>RPG</title>
+      <div id="selected-character-section">
+        <div class="section-title">Your Character</div>
+        <div id="selected-character"></div>
+      </div>
 
-</head>
+      <div id="available-to-attack-section">
+        <div class="section-title">Enemies Available To Attack</div>
+      </div>
 
-<body>
+      <div class="section-title">Fight Section</div>
+      <div id="fight-section">
+        <button id="attack-button">Attack</button>
+      </div>
 
-    <header>
-        <h1>Star Wars RPG!</h1>
-    </header>
-
-    <div id="game">
-
-        <div id="characters">
-            <p id="character-text">Choose Your Character!</p>
+      <div id="action">
+        <div class="character-section">
+          <div class="section-title">Defender</div>
+          <div id="defender"></div>
         </div>
-
-        <div id="enemies">
-            <p id="enemy-text">Choose Your Enemy!</p>
-        </div>
-
-        <div id="fight-section">
-            <p>Fight Section</p>
-            <button id="attackBtn">Attack!</button>
-        </div>
-
-        <div id="defender">
-            <p>Defender</p>
-        </div>
-
-        <button id="restartBtn">Restart</button>
-
+      </div>
     </div>
-    
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <div id="game-message"></div>
 
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/javascript/game.js"></script>
+  </body>
 </html>
