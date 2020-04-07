@@ -206,4 +206,85 @@ $(document).ready(function () {
       renderEnemies(combatants);
     }
   });
+
+  // Creates an onClick event for each enemy
+  $("#available-to-attack-section").on("click", ".character", function () {
+    // Saving the opponent's name
+    var name = $(this).attr("data-name");
+
+    // If there is no defender, the clicked enemy will become the defender
+    if ($("#defender").children().length === 0) {
+      defender = characters[name];
+      updateCharacter(defender, "#defender");
+
+      // Remove element as it will now be a new defender
+      $(this).remove();
+      clearMessage();
+    }
+  });
+
+  // When you click the attack button, run the following game logic...
+  $("#attack-button").on("click", function () {
+    // If there is a defender, combar will occur
+    if ($("#defender") / children().length !== 0) {
+      // Creates messages for our attack and our opponents counter attack
+      var attackMessage = `You attacked ${defender.name} for ${
+        attacker.attack * turnCounter
+      } damage!`;
+      var counterAttackMessage = `${defender.name} attacked you back for ${defender.enemyAttackBack} damage!`;
+      clearMessage();
+
+      // Reduce defender's health by your attack value
+      defender.health -= attacker.attack * turnCounter;
+
+      // If the enemy still has health...
+      if (defender.health > 0) {
+        // Render the enemy's updated character card
+        updateCharacter(defender, "#defender");
+
+        // Render the combat messages
+        renderMessage(attackMessage);
+        renderMessage(counterAttackMessage);
+
+        // Reduce your health by the opponent's attack value
+        attacker.health -= defender.enemyAttackBack;
+
+        // Render the player's updated character card
+        updateCharacter(attacker, "#selected-character");
+
+        // If you have less than zero health, game ends
+        // Call the restartGame function to allow the user to restart the game and play again
+        if (attacker.health <= 0) {
+          clearMessage();
+          restartGame("You SUCK!!! GAME OVER!!!!");
+          $("#attack-button").off("click");
+        }
+      } else {
+        // If the enemy has less than zero health, they're defeated
+        // Remove your opponent's character card
+        $("#defender").empty();
+
+        var gameStateMessage = `You have defeated ${defender.name}, you can choose to fight another enemy.`;
+        renderMessage(gameStateMessage);
+
+        // Increment your kill count
+        killCount++;
+
+        // If you have killed all of your opponents, you win!
+        // Call the restartGame function to allow the user to restart the game and play again
+        if (killCount >= combatants.length) {
+          clearMessage();
+          $("#attack-button").off("click");
+          restartGame("You won! Good job!!!");
+        }
+      }
+      // Increment turn counter
+      // This is used for determing how much damage the player does
+      turnCounter++;
+    } else {
+      // If there is no defender, render an error message
+      clearMessage();
+      renderMessage("No enemy here.");
+    }
+  });
 });
