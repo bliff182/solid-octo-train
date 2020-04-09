@@ -98,7 +98,7 @@ img {
   text-align: center;
 }
 
-#available-to-attack-section, .character {
+#available-to-attack-section .character {
   display: inline-block;
   cursor: pointer;
   background-color: red;
@@ -116,7 +116,7 @@ img {
   border-width: 1px;
 }
 
-#action, .character {
+#action .character {
   color: white;
   background-color: black;
 }

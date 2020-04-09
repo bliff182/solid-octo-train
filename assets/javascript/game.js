@@ -1,64 +1,3 @@
-// $(document).ready(function() {
-
-// // GLOBAL VARIABLES AND ARRAYS
-// // =======================================================
-
-//     // character variables
-//     var characters = {
-//         luke: {
-//             health: 100,
-//             attack: 10,
-//             counter: 5
-//         },
-//         obiWan : {
-//             health: 100,
-//             attack: 10,
-//             counter: 5
-//         },
-//         vader: {
-//             health: 150,
-//             attack: 6,
-//             counter: 20
-//         },
-//         darthMaul: {
-//             health: 180,
-//             attack: 4,
-//             counter: 25
-//         }
-//     };
-//     var characterChoice;
-//     var attacker;
-//     var enemyChoice;
-//     var defender;
-
-//     // Game counters
-//     var wins = 0;
-//     var losses = 0;
-
-//     // Booleans
-//     var isCharacterChosen = false;
-//     var isEnemyChosen = false;
-
-// // FUNCTIONS
-// // =======================================================
-
-//     // Choose character
-//     function chooseCharacter () {
-//         isCharacterChosen = true;
-//         $(".character-div").attr("health", this.health).attr("attack", this.attack).attr("counter", this.counter);
-//     }
-
-// // MAIN PROCESS
-// // =======================================================
-
-//     $(".character-div").on("click", function(){
-//         if (!isCharacterChosen) {
-//             $(".character-div").attr()
-//         }
-//     })
-
-// });
-
 // Execute this code when the DOM has fully loaded
 $(document).ready(function () {
   // VARIABLE DECLARATION
@@ -114,13 +53,15 @@ $(document).ready(function () {
   // Character rendered, area rendered to, and their statys is determined by the arguments passed in
   var renderCharacter = function (character, renderArea) {
     // This block of code builds the character card and renders it to the page
-    var charDiv = $(`<div class=character' data-name='${character.name}'>`);
+    var charDiv = $(
+      "<div class='character' data-name='" + character.name + "'>"
+    );
     var charName = $("<div class='character-name'>").text(character.name);
-    var charImage = $('<img alt="image" class="character-image">').attr(
+    var charImage = $("<img alt='image' class='character-image'>").attr(
       "src",
       character.imageUrl
     );
-    var charHealth = $('<div class="character-health">').text(character.health);
+    var charHealth = $("<div class='character-health'>").text(character.health);
     charDiv.append(charName).append(charImage).append(charHealth);
     $(renderArea).append(charDiv);
   };
@@ -226,7 +167,7 @@ $(document).ready(function () {
   // When you click the attack button, run the following game logic...
   $("#attack-button").on("click", function () {
     // If there is a defender, combar will occur
-    if ($("#defender") / children().length !== 0) {
+    if ($("#defender").children().length !== 0) {
       // Creates messages for our attack and our opponents counter attack
       var attackMessage = `You attacked ${defender.name} for ${
         attacker.attack * turnCounter
