@@ -1,10 +1,8 @@
-// Execute this code when the DOM has fully loaded
 $(document).ready(function () {
   // VARIABLE DECLARATION
   // ===================================================================
 
-  // Hold all characters in an object
-  var characters = {
+  const characters = {
     "Obi-Wan Kenobi": {
       name: "Obi-Wan Kenobi",
       health: 120,
@@ -36,40 +34,42 @@ $(document).ready(function () {
   };
 
   // Will be populated when the player selects a character
-  var attacker;
+  let attacker;
   // Populated with all the characters the player didn't select
-  var combatants = [];
+  const combatants = [];
   // Will be populated when the player chooses an opponent
-  var defender;
+  let defender;
   // Will keep track of turns during combat. Used for calculating player damage
-  var turnCounter = 1;
+  let turnCounter = 1;
   // Tracks number of defeated opponents
-  var killCount = 0;
+  let killCount = 0;
 
   // FUNCTIONS
   // ===================================================================
 
   // Function to render character cards to page
   // Character rendered, area rendered to, and their statys is determined by the arguments passed in
-  var renderCharacter = function (character, renderArea) {
+  const renderCharacter = function (character, renderArea) {
     // This block of code builds the character card and renders it to the page
-    var charDiv = $(
+    const charDiv = $(
       "<div class='character' data-name='" + character.name + "'>"
     );
-    var charName = $("<div class='character-name'>").text(character.name);
-    var charImage = $("<img alt='image' class='character-image'>").attr(
+    const charName = $("<div class='character-name'>").text(character.name);
+    const charImage = $("<img alt='image' class='character-image'>").attr(
       "src",
       character.imageUrl
     );
-    var charHealth = $("<div class='character-health'>").text(character.health);
+    const charHealth = $("<div class='character-health'>").text(
+      character.health
+    );
     charDiv.append(charName).append(charImage).append(charHealth);
     $(renderArea).append(charDiv);
   };
 
   // This function will load all the characters into the character section to be selected
-  var initializeGame = function () {
+  const initializeGame = function () {
     // Loop through the characters object and call the renderCharacter function on each character to render their card
-    for (var key in characters) {
+    for (let key in characters) {
       renderCharacter(characters[key], "#characters-section");
     }
   };
@@ -78,7 +78,7 @@ $(document).ready(function () {
 
   // This function handles updating the selected player or the current defender
   // If there is no selected player / defender this function will also place the character based on the areaRender chosen (e.g. #selected-character or #defender)
-  var updateCharacter = function (charObj, areaRender) {
+  const updateCharacter = function (charObj, areaRender) {
     // First, we empty the area so that we can re-render the new object
     $(areaRender).empty();
     renderCharacter(charObj, areaRender);
@@ -86,29 +86,29 @@ $(document).ready(function () {
 
   // This function will render the available-to-attack enemies
   // This should be run once after a character has been selected
-  var renderEnemies = function (enemyArr) {
-    for (var i = 0; i < enemyArr.length; i++) {
+  const renderEnemies = function (enemyArr) {
+    for (let i = 0; i < enemyArr.length; i++) {
       renderCharacter(enemyArr[i], "#available-to-attack-section");
     }
   };
 
   // Function to handle rendering game messages
-  var renderMessage = function (message) {
+  const renderMessage = function (message) {
     // Builds the message and appends it to the page
-    var gameMessageSet = $("#game-message");
-    var newMessage = $("<div>").text(message);
+    const gameMessageSet = $("#game-message");
+    const newMessage = $("<div>").text(message);
     gameMessageSet.append(newMessage);
   };
 
   // Function to handle restarting the game after victory or defeat
-  var restartGame = function (resultMessage) {
+  const restartGame = function (resultMessage) {
     // When the Restart button is clicked, reload the page
-    var restart = $("<button>Restart</button>").click(function () {
+    const restart = $("<button>Restart</button>").click(function () {
       location.reload();
     });
 
     // Build div that will display the victory/defeat message
-    var gameState = $("<div>").text(resultMessage);
+    const gameState = $("<div>").text(resultMessage);
 
     // Render the restart button and victory/defeat message to the page
     $("body").append(gameState);
@@ -116,8 +116,8 @@ $(document).ready(function () {
   };
 
   // Function to clear the game message section
-  var clearMessage = function () {
-    var gameMessage = $("#game-message");
+  const clearMessage = function () {
+    const gameMessage = $("#game-message");
     gameMessage.text("");
   };
 
@@ -126,14 +126,14 @@ $(document).ready(function () {
   // On click event for selecting our character
   $("#characters-section").on("click", ".character", function () {
     // Saving the clicked character's name
-    var name = $(this).attr("data-name");
+    const name = $(this).attr("data-name");
 
     // If a player character has not yet been chosen...
     if (!attacker) {
       // We populate attacker with the seclected character's information
       attacker = characters[name];
       // We then loop through the remaining characters and push them to the combatants array
-      for (var key in characters) {
+      for (let key in characters) {
         if (key !== name) {
           combatants.push(characters[key]);
         }
@@ -151,7 +151,7 @@ $(document).ready(function () {
   // Creates an onClick event for each enemy
   $("#available-to-attack-section").on("click", ".character", function () {
     // Saving the opponent's name
-    var name = $(this).attr("data-name");
+    const name = $(this).attr("data-name");
 
     // If there is no defender, the clicked enemy will become the defender
     if ($("#defender").children().length === 0) {
@@ -169,10 +169,10 @@ $(document).ready(function () {
     // If there is a defender, combar will occur
     if ($("#defender").children().length !== 0) {
       // Creates messages for our attack and our opponents counter attack
-      var attackMessage = `You attacked ${defender.name} for ${
+      const attackMessage = `You attacked ${defender.name} for ${
         attacker.attack * turnCounter
       } damage!`;
-      var counterAttackMessage = `${defender.name} attacked you back for ${defender.enemyAttackBack} damage!`;
+      const counterAttackMessage = `${defender.name} attacked you back for ${defender.enemyAttackBack} damage!`;
       clearMessage();
 
       // Reduce defender's health by your attack value
@@ -205,7 +205,7 @@ $(document).ready(function () {
         // Remove your opponent's character card
         $("#defender").empty();
 
-        var gameStateMessage = `You have defeated ${defender.name}, you can choose to fight another enemy.`;
+        const gameStateMessage = `You have defeated ${defender.name}, you can choose to fight another enemy.`;
         renderMessage(gameStateMessage);
 
         // Increment your kill count
