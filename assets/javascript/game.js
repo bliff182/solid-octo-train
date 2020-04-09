@@ -49,11 +49,9 @@ $(document).ready(function () {
 
   // Function to render character cards to page
   // Character rendered, area rendered to, and their statys is determined by the arguments passed in
-  const renderCharacter = function (character, renderArea) {
+  const renderCharacter = (character, renderArea) => {
     // This block of code builds the character card and renders it to the page
-    const charDiv = $(
-      "<div class='character' data-name='" + character.name + "'>"
-    );
+    const charDiv = $(`<div class='character' data-name='${character.name}'>`);
     const charName = $("<div class='character-name'>").text(character.name);
     const charImage = $("<img alt='image' class='character-image'>").attr(
       "src",
@@ -67,7 +65,7 @@ $(document).ready(function () {
   };
 
   // This function will load all the characters into the character section to be selected
-  const initializeGame = function () {
+  const initializeGame = () => {
     // Loop through the characters object and call the renderCharacter function on each character to render their card
     for (let key in characters) {
       renderCharacter(characters[key], "#characters-section");
@@ -78,7 +76,7 @@ $(document).ready(function () {
 
   // This function handles updating the selected player or the current defender
   // If there is no selected player / defender this function will also place the character based on the areaRender chosen (e.g. #selected-character or #defender)
-  const updateCharacter = function (charObj, areaRender) {
+  const updateCharacter = (charObj, areaRender) => {
     // First, we empty the area so that we can re-render the new object
     $(areaRender).empty();
     renderCharacter(charObj, areaRender);
@@ -86,14 +84,14 @@ $(document).ready(function () {
 
   // This function will render the available-to-attack enemies
   // This should be run once after a character has been selected
-  const renderEnemies = function (enemyArr) {
+  const renderEnemies = (enemyArr) => {
     for (let i = 0; i < enemyArr.length; i++) {
       renderCharacter(enemyArr[i], "#available-to-attack-section");
     }
   };
 
   // Function to handle rendering game messages
-  const renderMessage = function (message) {
+  const renderMessage = (message) => {
     // Builds the message and appends it to the page
     const gameMessageSet = $("#game-message");
     const newMessage = $("<div>").text(message);
@@ -101,7 +99,7 @@ $(document).ready(function () {
   };
 
   // Function to handle restarting the game after victory or defeat
-  const restartGame = function (resultMessage) {
+  const restartGame = (resultMessage) => {
     // When the Restart button is clicked, reload the page
     const restart = $("<button>Restart</button>").click(function () {
       location.reload();
@@ -116,7 +114,7 @@ $(document).ready(function () {
   };
 
   // Function to clear the game message section
-  const clearMessage = function () {
+  const clearMessage = () => {
     const gameMessage = $("#game-message");
     gameMessage.text("");
   };
